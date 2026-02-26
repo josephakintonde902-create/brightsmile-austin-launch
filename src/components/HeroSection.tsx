@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Star, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/dental-hero.webp";
@@ -39,7 +40,7 @@ const HeroSection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <Button size="lg" className="text-base px-8 rounded-full shadow-elevated" asChild>
-              <a href="#contact">Book Appointment</a>
+              <Link to="/book-appointment">Book Appointment</Link>
             </Button>
             <Button variant="outline" size="lg" className="text-base px-8 rounded-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground" asChild>
               <a href="tel:5125550147">

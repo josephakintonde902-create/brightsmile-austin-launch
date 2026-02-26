@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -35,7 +36,7 @@ const Navbar = () => {
             <Phone className="h-4 w-4" /> (512) 555-0147
           </a>
           <Button size="sm" asChild>
-            <a href="#contact">Book Appointment</a>
+            <Link to="/book-appointment">Book Appointment</Link>
           </Button>
         </div>
 
@@ -54,7 +55,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button className="w-full" size="sm" asChild>
-            <a href="#contact">Book Appointment</a>
+            <Link to="/book-appointment">Book Appointment</Link>
           </Button>
         </div>
       )}
