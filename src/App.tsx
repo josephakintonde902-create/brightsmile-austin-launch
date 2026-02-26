@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import BookAppointment from "./pages/BookAppointment";
 import AppointmentDetails from "./pages/AppointmentDetails";
@@ -16,13 +16,15 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/book-appointment" element={<BookAppointment />} />
-        <Route path="/appointment-details" element={<AppointmentDetails />} />
-        <Route path="/confirmation" element={<Confirmation />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/book-appointment" element={<BookAppointment />} />
+          <Route path="/appointment-details" element={<AppointmentDetails />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );

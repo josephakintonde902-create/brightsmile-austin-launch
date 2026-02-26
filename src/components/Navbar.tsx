@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +17,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-        <Link to="/" className="font-heading text-xl font-bold text-primary">
+        <a href="#hero" className="font-heading text-xl font-bold text-primary">
           BrightSmile<span className="text-foreground"> Dental</span>
-        </Link>
+        </a>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
@@ -36,8 +35,7 @@ const Navbar = () => {
             <Phone className="h-4 w-4" /> (512) 555-0147
           </a>
           <Button size="sm" asChild>
-            {/* navigate to booking page instead of scrolling */}
-            <Link to="/book-appointment">Book Appointment</Link>
+            <a href="#contact">Book Appointment</a>
           </Button>
         </div>
 
@@ -56,9 +54,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button className="w-full" size="sm" asChild>
-            <Link to="/book-appointment" onClick={() => setIsOpen(false)}>
-              Book Appointment
-            </Link>
+            <a href="#contact">Book Appointment</a>
           </Button>
         </div>
       )}

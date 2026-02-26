@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const CtaBanner = () => (
   <section className="py-20 lg:py-28 bg-primary">
@@ -24,7 +23,7 @@ const CtaBanner = () => (
           className="text-base px-10 rounded-full font-semibold shadow-elevated"
           asChild
         >
-          <Link to="/book-appointment">Book Your Visit Now</Link>
+          <a href="#contact">Book Your Visit Now</a>
         </Button>
       </motion.div>
     </div>
