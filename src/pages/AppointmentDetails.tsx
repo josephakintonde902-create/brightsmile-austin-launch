@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -30,8 +31,33 @@ const AppointmentDetails = () => {
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    navigate("/confirmation", { state: { date: dateStr, name: form.name } });
+    try {
+      const { data, error } = await supabase.functions.invoke("book-appointment", {
+        body: {
+          full_name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          service: form.service,
+          appointment_date: selectedDate!.toISOString().split("T")[0],
+          appointment_time: "10:30 AM",
+          notes: form.notes.trim() || null,
+        },
+      });
+
+      if (error) throw error;
+
+      if (!data?.success) {
+        toast({ title: "Booking failed", description: data?.message || "Unable to process appointment", variant: "destructive" });
+        setLoading(false);
+        return;
+      }
+
+      navigate("/confirmation", { state: { date: dateStr, name: form.name } });
+    } catch (err) {
+      console.error("Booking error:", err);
+      toast({ title: "Error", description: "Unable to process your appointment. Please try again.", variant: "destructive" });
+      setLoading(false);
+    }
   };
 
   if (!selectedDate) {
